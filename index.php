@@ -29,7 +29,7 @@ try {
     if($update->message->text== '/sayhello'){
         $response=$client->sendChatAction([
             'chat_id'=>$update->message->chat->id,
-            'action'=> 'Working'
+            'action'=> 'typing'
         ]);
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
