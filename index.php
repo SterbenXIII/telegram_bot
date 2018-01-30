@@ -74,5 +74,6 @@ try {
 
     //echo error message ot log it
     //echo $e->getMessage();
+    file_put_contents('logs/file.log',$e->getMessage(),FILE_APPEND);
 
 }
