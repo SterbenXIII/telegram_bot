@@ -33,7 +33,7 @@ try {
         ]);
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text'=> "Hello {$client->getMe()->username}";
+            'text'=> "Hello {$client->getMe()->username}"
         ]);
     }
     else if($update->message->text == '/email')
