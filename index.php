@@ -26,9 +26,20 @@ $update = json_decode(file_get_contents('php://input'));
 //your app
 try {
 
-    if($update->message->text == '/email')
+    if($update->message->text== '/sayhello'){
+        $response=$client->sendChatAction([
+            'chat_id'=>$update->message->chat->id,
+            'action'=> 'Working'
+        ]);
+        $response=$client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "List of commands :\n /email -> Get email address of the owner \n /latest -> Get latest posts of the blog"
+        ]);
+    }
+    else if($update->message->text == '/email')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+
     	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
         	'text' => "You can send email to : orestkhomitskyi@gmail.com"
