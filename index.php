@@ -33,7 +33,7 @@ try {
         ]);
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "List of commands :\n /email -> Get email address of the owner \n /latest -> Get latest posts of the blog"
+            'text'=> "Hello {$client->getMe()->username}";
         ]);
     }
     else if($update->message->text == '/email')
