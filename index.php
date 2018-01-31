@@ -38,16 +38,6 @@ try {
             'text'=> "Hello {$update->message->text}"
         ]);
     }
-    if($update->message->text== '/sayhello'){
-        $response=$client->sendChatAction([
-            'chat_id'=>$update->message->chat->id,
-            'action'=> 'typing'
-        ]);
-        $response=$client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text'=> "Hello {$client->}"
-        ]);
-    }
     else if($update->message->text == '/email')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
