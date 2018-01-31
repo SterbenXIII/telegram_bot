@@ -37,6 +37,10 @@ try {
                 'chat_id' => $update->message->chat->id,
                 'text'=> "I love you {$update->message->text}"
             ]);
+            $response=$client->sendSticker([
+                'chat_id' => $update->message->chat->id,
+                'file_id'=> 2
+            ]);
         }
         else
             $response=$client->sendMessage([
