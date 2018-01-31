@@ -17,15 +17,27 @@
 * © 2015 Kasra Madadipouya <kasra@madadipouya.com>
 *
 */
+
 require 'vendor/autoload.php';
 
 $client = new Zelenin\Telegram\Bot\Api('399359167:AAG77kgiiHyAjTt37Y-oi8sGI64w1X89FdU'); // Set your access token
 $url = 'https://customspambot.herokuapp.com'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-
+session_start();
 //your app
 try {
 
+    if($_SESSION['sayhello']==true){
+        $_SESSION['sayhello']=false;
+        $response=$client->sendChatAction([
+            'chat_id'=>$update->message->chat->id,
+            'action'=> 'typing'
+        ]);
+        $response=$client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text'=> "Hello {$update->message->text}"
+        ]);
+    }
     if($update->message->text== '/sayhello'){
         $response=$client->sendChatAction([
             'chat_id'=>$update->message->chat->id,
@@ -33,7 +45,7 @@ try {
         ]);
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text'=> "Hello {$client->getMe()->username}"
+            'text'=> "Hello {$client->}"
         ]);
     }
     else if($update->message->text == '/email')
@@ -45,12 +57,23 @@ try {
         	'text' => "You can send email to : orestkhomitskyi@gmail.com"
      	]);
     }
+    else if($update->message->text == '/sayhello'){
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+
+        $response=$client->sendMessage([
+            'Tell me your name'
+        ]);
+        $_SESSION['sayhello']=true;
+    }
     else if($update->message->text == '/help')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n /email -> Get email address of the owner \n /latest -> Get latest posts of the blog 
+    		'text' => "List of commands :\n
+    		 /email -> Get email address of the owner \n
+    		  /latest -> Get latest posts of the blog \n
+    		  /sayhello\n
     		/help -> Shows list of available commands"
     		]);
 
