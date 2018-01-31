@@ -23,13 +23,11 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('399359167:AAG77kgiiHyAjTt37Y-oi8sGI64w1X89FdU'); // Set your access token
 $url = 'https://customspambot.herokuapp.com'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-session_start();
 //your app
 try {
 
-    if($_SESSION['sayhello']==true){
-        session_start();
-        $_SESSION['sayhello']=false;
+    if(file_exists('file.txt')==true){
+        unlink('file.txt');
         $response=$client->sendChatAction([
             'chat_id'=>$update->message->chat->id,
             'action'=> 'typing'
@@ -57,9 +55,7 @@ try {
             'chat_id' => $update->message->chat->id,
             'text'=>'Tell me your name'
         ]);
-        session_start();
-
-        $_SESSION['sayhello']=true;
+        file_put_contents('file.txt','1');
     }
     else if($update->message->text == '/help')
     {
