@@ -48,11 +48,13 @@ try {
      	]);
     }
     else if($update->message->text == '/sayhello'){
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendChatAction([
+            'chat_id' => $update->message->chat->id, 'action' => 'typing']
+        );
 
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'Tell me your name'
+            'text'=>'Tell me your name'
         ]);
         $_SESSION['sayhello']=true;
     }
