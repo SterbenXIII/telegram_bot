@@ -28,6 +28,7 @@ session_start();
 try {
 
     if($_SESSION['sayhello']==true){
+        session_start();
         $_SESSION['sayhello']=false;
         $response=$client->sendChatAction([
             'chat_id'=>$update->message->chat->id,
@@ -56,6 +57,8 @@ try {
             'chat_id' => $update->message->chat->id,
             'text'=>'Tell me your name'
         ]);
+        session_start();
+
         $_SESSION['sayhello']=true;
     }
     else if($update->message->text == '/help')
