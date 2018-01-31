@@ -32,7 +32,14 @@ try {
             'chat_id'=>$update->message->chat->id,
             'action'=> 'typing'
         ]);
-        $response=$client->sendMessage([
+        if($update->message->text=='Марта' || $update->message->text=='Marta'){
+            $response=$client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text'=> "I love you {$update->message->text}"
+            ]);
+        }
+        else
+            $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text'=> "Hello {$update->message->text}"
         ]);
