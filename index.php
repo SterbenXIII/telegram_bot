@@ -75,7 +75,7 @@ try {
         $now=new \DateTime();
         $date_start=new \DateTime('12/12/2017');
         $diff=date_diff($now,$date_start);
-        $str="Ви зустрічаєтесь з ідіотом {$diff->y} років {$diff->m} місяців та {$diff->d} днів";
+        $str="Ви зустрічаєтесь з ідіотом {$diff->y} років {$diff->m} місяців та {$diff->d} днів {$diff->h} годин {$diff->m} хвилин {$diff->s} секунд";
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text'=>$str
