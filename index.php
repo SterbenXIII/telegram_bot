@@ -86,10 +86,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :
-    		 /email -> Отримати email КОДЄРА
-    		 /loveclock -> введи щоб взнати тривалість стосунків з дебілом
-    		 /help -> Shows list of available commands"
+    		'text' => "List of commands :\n/email -> Отримати email КОДЄРА\n/loveclock -> введи щоб взнати тривалість стосунків з дебілом\n/help -> Отримати список доступних команд"
     		]);
     }
     else if($update->message->text == '/latest')
