@@ -76,11 +76,10 @@ try {
         $date_start=new \DateTime('12/12/2017');
         $diff=date_diff($now,$date_start);
         $str="Ви зустрічаєтесь з ідіотом {$diff->y} років {$diff->m} місяців та {$diff->d} днів";
-        $response=$client->sendChatAction([
+        $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text'=>$str
         ]);
-
     }
     else if($update->message->text == '/help')
     {
@@ -88,11 +87,10 @@ try {
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
     		'text' => "List of commands :
-    		 /email -> Get email address of the owner
-    		  /loveclock -> введи щоб взнати тривалість стосунків з дебілом
-    		/help -> Shows list of available commands"
+    		 /email -> Отримати email КОДЄРА
+    		 /loveclock -> введи щоб взнати тривалість стосунків з дебілом
+    		 /help -> Shows list of available commands"
     		]);
-
     }
     else if($update->message->text == '/latest')
     {
