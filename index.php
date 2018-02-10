@@ -68,6 +68,20 @@ try {
         ]);
         file_put_contents('file.txt','1');
     }
+    else if($update->message->text=='/loveclock'){
+        $response = $client->sendChatAction([
+                'chat_id' => $update->message->chat->id, 'action' => 'typing']
+        );
+        $now=new \DateTime();
+        $date_start=new \DateTime('12/12/2017');
+        $diff=date_diff($now,$date_start);
+        $str="Ви зустрічаєтесь з ідіотом {$diff->y} років {$diff->m} місяців та {$diff->d} днів";
+        $response=$client->sendChatAction([
+            'chat_id' => $update->message->chat->id,
+            'text'=>$str
+        ]);
+
+    }
     else if($update->message->text == '/help')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
@@ -75,8 +89,7 @@ try {
     		'chat_id' => $update->message->chat->id,
     		'text' => "List of commands :
     		 /email -> Get email address of the owner
-    		  /latest -> Get latest posts of the blog 
-    		  /sayhello
+    		  /loveclock -> введи щоб взнати тривалість стосунків з дебілом
     		/help -> Shows list of available commands"
     		]);
 
@@ -96,7 +109,6 @@ try {
 					'chat_id' => $update->message->chat->id,
 					'text' => $message
 				]);
-
     }
     else
     {
@@ -108,7 +120,6 @@ try {
     }
 
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
-
 
     //echo error message ot log it
     //echo $e->getMessage();
