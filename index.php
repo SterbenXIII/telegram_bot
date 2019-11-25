@@ -96,7 +96,7 @@ try {
 
     	 $response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
-         	'text' => $dog
+         	'text' => "$dog"
      	 ]);
     }
     else if($update->message->text == '/latest')
