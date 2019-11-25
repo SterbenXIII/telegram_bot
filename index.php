@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-$photo_url = 'https://telegram.org/img/t_logo.png';
+$photo_url = 'https://dog.ceo/api/breeds/image/random';
 
 //your app
 try {
