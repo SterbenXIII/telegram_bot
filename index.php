@@ -89,9 +89,8 @@ try {
     		'text' => "List of commands :\n/email -> получить email уедера\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/help ->получить списков команд"
     		]);
     }
-    else if($update->message->text == '/getDog')
+    else if($update->message->text =='/getDog')
     {
-        
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $dog = "https://68.media.tumblr.com/6d830b4f2c455f9cb6cd4ebe5011d2b8/tumblr_oj49kevkUz1v4bb1no1_500.jpg"
     	$response = $client->sendMessage([
@@ -128,7 +127,7 @@ try {
 
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
 
-    //echo error message ot log it
-    //echo $e->getMessage();
+    echo error message ot log it
+    echo $e->getMessage();
 
 }
