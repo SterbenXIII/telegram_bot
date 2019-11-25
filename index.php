@@ -20,7 +20,7 @@
 require 'vendor/autoload.php';
 
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
-$url = ''; // URL RSS feed
+$url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 
 //your app
@@ -88,6 +88,15 @@ try {
     		'chat_id' => $update->message->chat->id,
     		'text' => "List of commands :\n/email -> получить email уедера\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/help ->получить списков команд"
     		]);
+    }
+    else if($update->message->text == '/getDog')
+    {
+    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+
+    	$response = $client->sendMessage([
+        	'chat_id' => $update->message->chat->id,
+        	'text' => "https://dog.ceo/api/breeds/image/random"
+     	]);
     }
     else if($update->message->text == '/latest')
     {
