@@ -91,12 +91,12 @@ try {
     }
     else if($update->message->text == '/getDog')
     {
-        $dog = "https://68.media.tumblr.com/6d830b4f2c455f9cb6cd4ebe5011d2b8/tumblr_oj49kevkUz1v4bb1no1_500.jpg"
+        
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-
-    	 $response = $client->sendMessage([
+        $dog = "https://68.media.tumblr.com/6d830b4f2c455f9cb6cd4ebe5011d2b8/tumblr_oj49kevkUz1v4bb1no1_500.jpg"
+    	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
-         	'text' => "$dog"
+         	'text' =>$dog
      	 ]);
     }
     else if($update->message->text == '/latest')
