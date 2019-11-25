@@ -24,12 +24,12 @@ $photo_url = 'https://dog.ceo/api/breeds/image/random';
 
 function get_url()
 {
-    $contents = requests.get('https://dog.ceo/api/breeds/image/random').json();
-    $urlI = $contents['url'];
-    return $urlI;
-
+  $content = file_get_contents('https://dog.ceo/api/breeds/image/random');
+  $urls = $content['url'];
+  return $urls
 }
 
+$get_img = get_url;
 //your app
 try {
     if(file_exists('file.txt')==true){
@@ -88,7 +88,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => get_url , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $get_img , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
