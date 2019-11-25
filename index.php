@@ -22,6 +22,7 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
+$photo_url = 'https://telegram.org/img/t_logo.png';
 
 //your app
 try {
@@ -81,6 +82,11 @@ try {
             'text'=>$str
         ]);
     }
+    else if($update->message->text == '/getImg')
+    {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $photo_url , 'action' => 'typing']);
+    }
     else if($update->message->text == '/help')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
@@ -88,15 +94,6 @@ try {
     		'chat_id' => $update->message->chat->id,
     		'text' => "List of commands :\n/email -> получить email уедера\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/help ->получить списков команд"
     		]);
-    }
-    else if($update->message->text =='/getDog')
-    {
-    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $dog = "https://68.media.tumblr.com/6d830b4f2c455f9cb6cd4ebe5011d2b8/tumblr_oj49kevkUz1v4bb1no1_500.jpg"
-    	$response = $client->sendMessage([
-        	'chat_id' => $update->message->chat->id,
-         	'text' =>$dog
-     	 ]);
     }
     else if($update->message->text == '/latest')
     {
@@ -127,7 +124,6 @@ try {
 
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
 
-    echo error message ot log it
-    echo $e->getMessage();
+   
 
 }
