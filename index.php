@@ -20,7 +20,9 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-$photo_url = 'https://dog.ceo/api/breeds/image/random';
+$json = json_decode(file_get_contents('https://dog.ceo/api/breeds/image/random'));
+
+
 
 
 
@@ -82,7 +84,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $photo_url , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $json , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
