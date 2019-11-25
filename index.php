@@ -14,15 +14,15 @@
 *
 * Author(s):
 *
-* © 2015 Kasra Madadipouya <kasra@madadipouya.com>
+* © 2015-2018 Kasra Madadipouya <kasra@madadipouya.com>
 *
 */
-
 require 'vendor/autoload.php';
 
-$client = new Zelenin\Telegram\Bot\Api('399359167:AAG77kgiiHyAjTt37Y-oi8sGI64w1X89FdU'); // Set your access token
-$url = 'https://customspambot.herokuapp.com'; // URL RSS feed
+$client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
+$url = ''; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
+
 //your app
 try {
 
@@ -32,10 +32,10 @@ try {
             'chat_id'=>$update->message->chat->id,
             'action'=> 'typing'
         ]);
-        if($update->message->text=='Марта' || $update->message->text=='Marta'){
+        if($update->message->text=='Янина' || $update->message->text=='Yanina'){
             $response=$client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text'=> "I love you {$update->message->text}"
+                'text'=> "Я люблю тебя {$update->message->text}!"
             ]);
             $response=$client->sendSticker([
                 'chat_id' => $update->message->chat->id,
@@ -45,7 +45,7 @@ try {
         else
             $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text'=> "Hello {$update->message->text}"
+            'text'=> "Привет {$update->message->text}!"
         ]);
     }
     else if($update->message->text == '/email')
@@ -54,7 +54,7 @@ try {
 
     	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
-        	'text' => "You can send email to : orestkhomitskyi@gmail.com"
+        	'text' => "можешь и сюда писать: sterbenxiiosu@gmail.com"
      	]);
     }
     else if($update->message->text == '/sayhello'){
@@ -64,7 +64,7 @@ try {
 
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text'=>'Tell me your name'
+            'text'=>'Как тебя зовут?'
         ]);
         file_put_contents('file.txt','1');
     }
@@ -73,9 +73,9 @@ try {
                 'chat_id' => $update->message->chat->id, 'action' => 'typing']
         );
         $now=new \DateTime();
-        $date_start=new \DateTime('12/12/2017');
+        $date_start=new \DateTime('09/01/2019');
         $diff=date_diff($now,$date_start);
-        $str="Ви зустрічаєтесь з ідіотом {$diff->y} років {$diff->m} місяців та {$diff->d} днів {$diff->h} годин {$diff->m} хвилин {$diff->s} секунд";
+        $str="Вы встречаетесь с идиотом {$diff->y} лет, {$diff->m} месяцев , {$diff->d} дней, {$diff->h} часов, {$diff->m} минут и {$diff->s} секунд";
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text'=>$str
@@ -86,7 +86,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n/email -> Отримати email КОДЄРА\n/loveclock -> введи щоб взнати тривалість стосунків з дебілом\n/help -> Отримати список доступних команд"
+    		'text' => "List of commands :\n/email -> получить email уедера\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/help ->получить списков команд"
     		]);
     }
     else if($update->message->text == '/latest')
@@ -104,13 +104,15 @@ try {
 					'chat_id' => $update->message->chat->id,
 					'text' => $message
 				]);
-    }
+
+	}
+	
     else
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "{$_SESSION['sayhello']}Invalid command, please use /help to get list of available commands"
+    		'text' => "ой,какой же облом. попробуй: /help - ответы на все вопросы"
     		]);
     }
 
@@ -118,6 +120,5 @@ try {
 
     //echo error message ot log it
     //echo $e->getMessage();
-    error_log($e->getMessage());
 
 }
