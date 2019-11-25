@@ -1,5 +1,4 @@
 <?php
-
 /*
 * This file is part of GeeksWeb Bot (GWB).
 *
@@ -18,15 +17,21 @@
 *
 */
 require 'vendor/autoload.php';
-
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 $photo_url = 'https://dog.ceo/api/breeds/image/random';
 
+function get_url()
+{
+    $contents = requests.get('https://random.dog/woof.json').json();
+    $urlI = $contents['url'];
+    return $urlI;
+
+}
+
 //your app
 try {
-
     if(file_exists('file.txt')==true){
         unlink('file.txt');
         $response=$client->sendChatAction([
@@ -52,7 +57,6 @@ try {
     else if($update->message->text == '/email')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-
     	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
         	'text' => "можешь и сюда писать: sterbenxiiosu@gmail.com"
@@ -62,7 +66,6 @@ try {
         $response = $client->sendChatAction([
             'chat_id' => $update->message->chat->id, 'action' => 'typing']
         );
-
         $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text'=>'Как тебя зовут?'
@@ -85,7 +88,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $photo_url , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => get_url , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
@@ -110,7 +113,6 @@ try {
 					'chat_id' => $update->message->chat->id,
 					'text' => $message
 				]);
-
 	}
 	
     else
@@ -121,9 +123,6 @@ try {
     		'text' => "ой,какой же облом. попробуй: /help - ответы на все вопросы"
     		]);
     }
-
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
-
    
-
 }
