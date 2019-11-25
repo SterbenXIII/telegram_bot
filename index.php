@@ -29,7 +29,7 @@ function get_url()
   return $urls
 }
 
-$get_img = get_url;
+
 //your app
 try {
     if(file_exists('file.txt')==true){
@@ -88,7 +88,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $get_img , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => get_url , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
