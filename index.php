@@ -24,7 +24,7 @@ $photo_url = 'https://dog.ceo/api/breeds/image/random';
 
 function get_url()
 {
-    $contents = requests.get('https://random.dog/woof.json').json();
+    $contents = requests.get('https://dog.ceo/api/breeds/image/random').json();
     $urlI = $contents['url'];
     return $urlI;
 
