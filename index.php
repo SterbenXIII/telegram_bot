@@ -24,8 +24,9 @@ $json = file_get_contents('https://dog.ceo/api/breeds/image/random');
 $array = json_decode($json, TRUE);
 
 
+ $get_img = echo($array['message']);
 
-$dump = var_dump($array);
+
 
 
 //your app
@@ -86,7 +87,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => var_dump($array) , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $get_img  , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
