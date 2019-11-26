@@ -21,13 +21,11 @@ $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUu
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 $json = file_get_contents('https://dog.ceo/api/breeds/image/random');
-
-
-
 $array = json_decode($json, TRUE);
 
 
 
+$dump = var_dump($array);
 
 
 //your app
@@ -88,7 +86,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $array , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => var_dump($array) , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
