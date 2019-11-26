@@ -22,12 +22,10 @@ $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 
 
-function getImg()
-{
+
     $json = file_get_contents('https://dog.ceo/api/breeds/image/random');
     $array = json_decode($json, TRUE);
-    echo($array['message']);
-}
+    
 
 
 
@@ -91,7 +89,7 @@ try {
     else if($update->message->text == '/getImg')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => getImg , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $array['message'] , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
