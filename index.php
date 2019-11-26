@@ -20,7 +20,7 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
 $url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-$json = json_decode(file_get_contents('https://dog.ceo/api/breeds/image/random'));
+$json = json_decode(file('https://dog.ceo/api/breeds/image/random'));
 
 
 
