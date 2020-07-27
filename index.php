@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of GeeksWeb Bot (GWB).
 *
@@ -17,14 +18,15 @@
 *
 */
 require 'vendor/autoload.php';
-$client = new Zelenin\Telegram\Bot\Api('999479664:AAH7iB8moiLGcwoZIzEmMVkyRdObUuH5SaY'); // Set your access token
-$url = 'https://mydewidiot-bot.herokuapp.com/'; // URL RSS feed
+
+$client = new Zelenin\Telegram\Bot\Api('1355682540:AAEXLpzZBB3cYi7Q4U0CdImIYxp8guDyaTE'); // Set your access token
+$url = 'https://testsd-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
+$json_dog = file_get_contents('https://dog.ceo/api/breeds/image/random');
+$array_dog = json_decode($json_dog, TRUE);
 
-
-
-    $json = file_get_contents('https://dog.ceo/api/breeds/image/random');
-    $array = json_decode($json, TRUE);
+$json_fox = file_get_contents('https://randomfox.ca/floof/');
+$array_fox = json_decode($json_fox, TRUE);
     
 
 
@@ -39,10 +41,10 @@ try {
             'chat_id'=>$update->message->chat->id,
             'action'=> 'typing'
         ]);
-        if($update->message->text=='Янина' || $update->message->text=='Yanina'){
+        if($update->message->text=='Ира' || $update->message->text=='Irina'){
             $response=$client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text'=> "Я люблю тебя {$update->message->text}!"
+                'text'=> "Я люблю тебя, {$update->message->text}!"
             ]);
             $response=$client->sendSticker([
                 'chat_id' => $update->message->chat->id,
@@ -55,12 +57,12 @@ try {
             'text'=> "Привет {$update->message->text}!"
         ]);
     }
-    else if($update->message->text == '/email')
+    else if($update->message->text == '/telega')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
-        	'text' => "можешь и сюда писать: sterbenxiiosu@gmail.com"
+        	'text' => "можешь и сюда писать: @e_d_i_n_o_r_o_z_h_e_k"
      	]);
     }
     else if($update->message->text == '/sayhello'){
@@ -78,7 +80,7 @@ try {
                 'chat_id' => $update->message->chat->id, 'action' => 'typing']
         );
         $now=new \DateTime();
-        $date_start=new \DateTime('09/01/2019');
+        $date_start=new \DateTime('06/07/2020');
         $diff=date_diff($now,$date_start);
         $str="Вы встречаетесь с идиотом {$diff->y} лет, {$diff->m} месяцев , {$diff->d} дней, {$diff->h} часов, {$diff->m} минут и {$diff->s} секунд";
         $response=$client->sendMessage([
@@ -86,17 +88,22 @@ try {
             'text'=>$str
         ]);
     }
-    else if($update->message->text == '/getImg')
+    else if($update->message->text == '/getdog')
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $array['message'] , 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $array_dog['message'] , 'action' => 'typing']);
+    }
+    else if($update->message->text == '/getfox')
+    {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendPhoto(['chat_id' => $update->message->chat->id, 'photo' => $array_fox['image'] , 'action' => 'typing']);
     }
     else if($update->message->text == '/help')
     {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n/email -> получить email уедера\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/help ->получить списков команд"
+    		'text' => "Список команд :\n/email -> получить Telegu\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/getdog - собакен\n/getfox - лесичка\n/help ->получить списков команд"
     		]);
     }
     else if($update->message->text == '/latest')
