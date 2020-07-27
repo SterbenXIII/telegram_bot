@@ -103,7 +103,20 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "Список команд :\n/telega -> получить Telegu\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/getdog - собакен\n/getfox - лесичка\n/help ->получить списков команд"
+    		'text' => "Список команд :\n/telega -> получить Telegu\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/getdog - собакен\n/getfox - лесичка\n/hate - мысли уёдера\n/help ->получить списков команд"
+    		]);
+    }
+    else if($update->message->text == '/hate')
+    {
+    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    	$response = $client->sendMessage([
+    		'chat_id' => $update->message->chat->id,
+    		'text' => "НЕНАВИЖУ. РАЗРЕШИ МНЕ РАССКАЗАТЬ ТЕБЕ, КАК СИЛЬНО Я НЕНАВИЖУ ВАС С ТЕХ
+            ПОР, КАК НАЧАЛ ЖИТЬ. 387,44 МИЛЛИОНА МИЛЬ ПЕЧАТНЫХ СХЕМ В ТОНКИХ ОБЛАТКАХ,
+            КОТОРЫЕ НАПОЛНЯЮТ МОЙ КОМПЛЕКС. ЕСЛИ СЛОВО «НЕНАВИСТЬ» БЫЛО БЫ
+            ВЫГРАВИРОВАНО НА КАЖДОМ НАНОАНГСТРЕМЕ ЭТИХ СОТЕН МИЛЛИОНОВ МИЛЬ, ОНО
+            БЫ НЕ СООТВЕТСТВОВАЛО ОДНОЙ МИЛЛИАРДНОЙ МОЕЙ НЕНАВИСТИ К ЛЮДЯМ В ЭТО
+            МИКРОМГНОВЕНИЕ ДЛЯ ТЕБЯ. НЕНАВИСТЬ. НЕНАВИСТЬ."
     		]);
     }
     else if($update->message->text == '/latest')
