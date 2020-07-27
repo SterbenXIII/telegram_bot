@@ -51,6 +51,16 @@ try {
                 'file_id'=> 2
             ]);
         }
+        else if($update->message->text=='Влад' || $update->message->text=='Вадик' || $update->message->text=='Дима' || $update->message->text=='Тимур' || $update->message->text=='Ян' || $update->message->text=='Юрген' || $update->message->text=='Юра' || $update->message->text=='Вова' || $update->message->text=='Тоня'){
+            $response=$client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text'=> "Отсоси, {$update->message->text}!"
+            ]);
+            $response=$client->sendSticker([
+                'chat_id' => $update->message->chat->id,
+                'file_id'=> 2
+            ]);
+        }
         else
             $response=$client->sendMessage([
             'chat_id' => $update->message->chat->id,
