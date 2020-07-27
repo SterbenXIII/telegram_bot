@@ -103,7 +103,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "Список команд :\n/email -> получить Telegu\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/getdog - собакен\n/getfox - лесичка\n/help ->получить списков команд"
+    		'text' => "Список команд :\n/telega -> получить Telegu\n/loveclock -> напиши чтобы узнать сколько ты встречаешься с идиотом\n/getdog - собакен\n/getfox - лесичка\n/help ->получить списков команд"
     		]);
     }
     else if($update->message->text == '/latest')
