@@ -19,7 +19,7 @@
 */
 require 'vendor/autoload.php';
 
-$client = new Zelenin\Telegram\Bot\Api('1355682540:AAEXLpzZBB3cYi7Q4U0CdImIYxp8guDyaTE'); // Set your access token
+$client = new Zelenin\Telegram\Bot\Api(''); // Set your access token
 $url = 'https://testsd-bot.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 $json_dog = file_get_contents('https://dog.ceo/api/breeds/image/random');
@@ -41,7 +41,7 @@ try {
             'chat_id'=>$update->message->chat->id,
             'action'=> 'typing'
         ]);
-        if($update->message->text=='Ира' || $update->message->text=='Irina'){
+        if($update->message->text=='NAME' || $update->message->text=='NAME'){
             $response=$client->sendMessage([
                 'chat_id' => $update->message->chat->id,
                 'text'=> "Я люблю тебя, {$update->message->text}!"
@@ -72,7 +72,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
         	'chat_id' => $update->message->chat->id,
-        	'text' => "можешь и сюда писать: @e_d_i_n_o_r_o_z_h_e_k"
+        	'text' => "можешь и сюда писать: ADRESS"
      	]);
     }
     else if($update->message->text == '/sayhello'){
@@ -90,7 +90,7 @@ try {
                 'chat_id' => $update->message->chat->id, 'action' => 'typing']
         );
         $now=new \DateTime();
-        $date_start=new \DateTime('06/07/2020');
+        $date_start=new \DateTime('mm/dd/yyyy');
         $diff=date_diff($now,$date_start);
         $str="Вы встречаетесь с идиотом {$diff->y} лет, {$diff->m} месяцев , {$diff->d} дней, {$diff->h} часов, {$diff->m} минут и {$diff->s} секунд";
         $response=$client->sendMessage([
